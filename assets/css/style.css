@@ -1,0 +1,26 @@
+body {
+	background-color: black;
+	background-image: url("../images/bttfbg.jpeg");
+    font-family: 'Droid Sans', sans-serif;
+
+}
+h1 {
+    text-align: center;
+}
+#mainGame {
+	background: #CECFDE;
+    min-height: 400px;
+    width: 600px;
+    position: relative;
+    margin-left: 5%;
+    margin-top: 5%;
+    padding: 20px;
+    border-radius: 5px;
+}
+#gameTitle {
+	text-align: center;
+}
+#logo {
+	margin-left: 150px;
+}
+
