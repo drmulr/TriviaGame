@@ -1,37 +1,78 @@
 $(document).ready(function() {
 
-	var carStart = new Audio("assets/carstart.wav");
+	var carStart = new Audio("assets/audio/carstart.wav");
 	var nextQdiv = document.getElementById("#gameQ");
+	
+	// Song Button
+        $(".theme-button").on("click", function() {
+          audioElement.play();
+        });
+        // Pause Button
+        $(".pause-button").on("click", function() {
+          audioElement.pause();
+        });
+
 
 
 	var questions = [
 		{ 	
 			q: "Marty meets Doc at which shopping mall in the first Back to the Future film?",
 			a: ["Lone Pine", "Wild Oak", "Big Fir", "Twin Pines"],
-			correctA: "ans4"
-		},
-		
+			correctA: "3"
+		},		
 		{ 
 			q: "What is printed on the license plate of the time-traveling DeLorean?",
 			a: ["Science", "TimeTvl", "OutaTime", "Time4U"],
-			correctA: "ans3" 
+			correctA: "2" 
 		},
 		{ 
 			q: "Who is playing in the World Series in 2015?",
 			a: ["Chicago vs Miami", "New York vs Los Angeles", "San Francisco vs Texas", "Seattle vs Atlanta"],
-			correctA: "ans1" 
-		}
+			correctA: "0" 
+		},
+		{
+			q: "What date do Marty, Doc, and Jennifer travel to in Back to the Future II?",
+			a: ["September 22, 2015", "November 8, 2015", "December 1, 2015", "October 21, 2015"],
+			correctA: "3"
+		},
+		{
+			q: "What kind of drink does Marty ask for when he arrives in the old West?",
+			a: ["Milk", "IceWater", "Pepsi", "Root Beer"],
+			correctA: "1"
+		},
+		{
+			q: "After Marty arrives in 1855, the next train will be leaving town on Monday at what time?",
+			a: ["7:00am", "8:00am", "9:00am", "10:00am"],
+			correctA: "1"
+		},
+		{
+			q: "What is Buford Tannen's nickname?",
+			a: ["Lone Wolf", "Crazy Snake", "Mad Dog", "Wild Bull"],
+			correctA: "2"
+		},
+		{
+			q: "Marty is to meet up with Griff Tannen in which cafe in 2015?",
+			a: ["Cafe Future", "Cafe 80's", "Giggawatts", "Space Cafe"],
+			correctA: "1"
+		},
+		{
+			q: "What does Biff run into after he chases Marty around the Hill Valley square?",
+			a: ["Garbage", "Dirt", "Manure", "Tar"],
+			correctA: "2"
+		},
+		{
+			q: "What does Doc Brown call his dog in 1955?",
+			a: ["Copernicus", "Edison", "Einstein", "Tesla"],
+			correctA: "0"
+		},
 		];
 
-		// q3: ["Who is playing in the World Series in 2015?", "Chicago vs Miami"],
-		// q4: ["What date do Marty, Doc, and Jennifer travel to in Back to the Future II?", "October 21, 1985"],
 		// q5: ["What kind of drink does Marty ask for when he arrives in the old West?", "Water"],
 		// q6: ["After Marty arrives in 1855, the next train will be leaving town on Monday at what time?", "8:00am"],
 		// q7: ["What is Buford Tannen's nickname?", "Mad Dog"],
 		// q8: ["Marty is to meet up with Griff Tannen in which cafe in 2015?", "Cafe 80's"],
 		// q9: ["What does Biff run into after he chases Marty around the Hill Valley square?", "Manure"],
 		// q10: ["What does Doc Brown call his dog in 1955?", "Copernicus"]
-
 
 	// var answerChoices = {
 	// 	q1: ["Lone Pine ", "Wild Oak ", "Big Fir ", "Twin Pines "],
@@ -55,36 +96,16 @@ $(document).ready(function() {
 	var score = 0;
 	var questionIndex = 0;
 	var answerIndex = 0;
-
-	var answerA = questions[answerIndex].a[0];
-	var answerB = questions[answerIndex].a[1];
-	var answerC = questions[answerIndex].a[2];
-	var answerD = questions[answerIndex].a[3];	
-
 	var currentQ = questions[questionIndex].q;
-	console.log("Current Question: " + currentQ);
-	console.log("Next Question: " + questions[1].q);
-	var a1 = questions[answerIndex].a;
 	var correctAnswer = questions[0].correctA;
-	var chosenAnswer = [];
 
-	console.log("This should say Lone Pine: " + answerA);
-	console.log(answerB + answerC + answerD);
-
-// <div id="timeClock"></div>
-// <div id="gameQ"></div>
-// <div id="scoreDiv"></div>
-
-
-// .click(function(){$(this).slideUp();})
-
+	// .click(function(){$(this).slideUp();})
 
 //ON-LOAD
 	function playLogo(){
 		$("#logoDiv").append("<h1>Trivia Time!</h1>").fadeIn("slow");
 		//need trivia to just show up after like 2 seconds
 		//play music here too maybe
-		console.log("trivia after 5 seconds works!")
 		carStart.play();
 	}
 	function startButton() {
@@ -92,19 +113,26 @@ $(document).ready(function() {
 		$("#startButton").click(function(){
 			$("#startButton").hide();
 			$("#gameQ").html(bringQuestion);
-
-
 		});		
-    };
+    }
 
 //PLAY THE GAME
     function bringQuestion() {
-    	$("#gameQ").html(currentQ);				
-			$("#ans1").append(answerA + "<br>").hover(function() {$(this).toggleClass("hover")});
-			$("#ans2").append(answerB + "<br>").hover(function() {$(this).toggleClass("hover")});
-			$("#ans3").append(answerC + "<br>").hover(function() {$(this).toggleClass("hover")});
-			$("#ans4").append(answerD + "<br>").hover(function() {$(this).toggleClass("hover")});
-	
+    	endTime();
+    	// currentQ = questions[questionIndex].q;
+    	// answer0 = questions[answerIndex].a[0];
+		// answer1 = questions[answerIndex].a[1];
+		// answer2 = questions[answerIndex].a[2];
+		// answer3 = questions[answerIndex].a[3];		
+		// correctAnswer = questions[questionIndex].correctA;
+
+    	$("#gameQ").html(currentQ);	
+    		for (var i = 0; i < 4; i++) {
+    			var answers = $("<div>").attr("id",i).addClass("ans");
+    			answers.append(questions[answerIndex].a[i] + "<br>").hover(function() {$(this).toggleClass("hover")});
+    			$("#gameQ").append(answers);
+    		}
+    
         // if (questionIndex <= (questionsArray.length - 1)) {
         //   document.querySelector("#gameQ").innerHTML = questionsArray[0][0];
         // }
@@ -114,24 +142,50 @@ $(document).ready(function() {
         // }
     }
 
-    $(".ans").click(function(e) {
-    	var chosenAnswer = e.target.id
-    	if( chosenAnswer == correctAnswer) {
+    function endTime(){
+    	if( questionIndex >= questions.length - 1 ) {
+    		$("#gameQ").html("Game over.");
+    	} else {
+    		
+    	}
+    }
+
+    $(document).on("click",".ans",function(e) {
+    	var chosenAnswer = e.target.id;
+    	if( chosenAnswer == correctAnswer ) {   		
     		score++;
     		questionIndex++;
     		answerIndex++;
     		alert("Yes");
     		$("#gameQ").html("");
     		updateScore();
+    		if( questionIndex >= questions.length ) {
+    			$("#gameQ").html("Game over.");
+    		} else {
     		bringQuestion();
+    		}
+    		console.log("current question: " + currentQ);
+    		console.log("Need answer index 2: " + answerIndex);
     		
     	} else {
+    		questionIndex++;
+    		answerIndex++;
     		alert("No");
+    		$("#gameQ").html("");
+    		updateScore();
+    		if( questionIndex >= questions.length ) {
+    			$("#gameQ").html("Game over.");
+    		} else {
+    		bringQuestion();
+    		}
+    		
+    		console.log("current question: " + currentQ);
+    		console.log("Need answer index : " + answerIndex);
     	}
-    console.log("Correct Answer should be Twin Pines: " + correctAnswer)
-    console.log("What the piece is this? " + e.target.id);
-    })
 
+    })
+    console.log("Correct Answer should be Twin Pines: " + correctAnswer)
+    
     // function bringQuestion2() {
     // 	for( var question in questions ) {
 
@@ -141,26 +195,22 @@ $(document).ready(function() {
 
     
     // }
-
-
-
-
     function updateScore() {
-    	$("#scoreDiv").html("Total correct: " + score);
+    	$("#scoreDiv").html("Total correct: " + score + " of " + questionIndex);
     }
 
 		    //this list everything in the array...
-			function questionList(arr) {
-		        // We then loop through the selected array.
-		        for (var i = 0; i < arr.length; i++) {
-		          // Each time we print the value inside the array.
-		          console.log(arr[i]);
-		        }
-		        console.log("---------");
-		      }
+			// function questionList(arr) {
+		 //        // We then loop through the selected array.
+		 //        for (var i = 0; i < arr.length; i++) {
+		 //          // Each time we print the value inside the array.
+		 //          console.log(arr[i]);
+		 //        }
+		 //        console.log("---------");
+		 //      }
     
-	setTimeout(playLogo, 1000*3);
-	setTimeout(startButton, 1000*6);
+	setTimeout(playLogo, 1000*2);
+	setTimeout(startButton, 1000*5);
 
 });
 
