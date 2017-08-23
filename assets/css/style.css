@@ -33,6 +33,9 @@ h1 {
     text-align: center;
 
 }
+#timeClock {
+    text-align: center;
+}
 .ans {
     text-align: center;
     line-height: 2em;
@@ -44,6 +47,7 @@ h1 {
 .hover {
     background-color: darkred;
     font-weight: bold;
+    color: white;
 }
 .btn {
     margin-top: -5px;

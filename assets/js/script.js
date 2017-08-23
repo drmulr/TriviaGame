@@ -1,15 +1,21 @@
 $(document).ready(function() {
 
 	var carStart = new Audio("assets/audio/carstart.wav");
+	var themeAudio = new Audio("assets/audio/theme.mp3")
 	var nextQdiv = document.getElementById("#gameQ");
+
+	setTimeout(playLogo, 1000*2);
+	setTimeout(startButton, 1000*5);
+
+
 	
 	// Song Button
         $(".theme-button").on("click", function() {
-          audioElement.play();
+          themeAudio.play();
         });
         // Pause Button
         $(".pause-button").on("click", function() {
-          audioElement.pause();
+          themeAudio.pause();
         });
 
 
@@ -93,6 +99,7 @@ $(document).ready(function() {
 	console.log("Should be Marty Meets Doc: " + questions[0].q);
 
 
+
 	var score = 0;
 	var questionIndex = 0;
 	var answerIndex = 0;
@@ -100,6 +107,38 @@ $(document).ready(function() {
 	var correctAnswer = questions[0].correctA;
 
 	// .click(function(){$(this).slideUp();})
+
+
+//BEGIN COUNTDOWN WORK
+	var number = 100;
+	var intervalID
+
+    function run() {
+      	intervalId = setInterval(decrement, 1000);
+    }
+    function decrement() {
+	      //  Decrease number by one.
+	      number--;
+	      //  Show the number in the #timeClock tag.
+	      $("#timeClock").html("<h2>" + number + "</h2>");
+
+	      if (number < 1) {
+	        stop();
+	        console.log("Time's up!");
+
+	      }
+    }
+    function stop() {
+	      //  Clears our intervalId
+	      //  We just pass the name of the interval
+	      //  to the clearInterval function.
+	      clearInterval(intervalId);
+	      $("#timeClock").html("<h2>00:00</h2>");
+    }
+//END COUNTDOWN WORK
+
+
+
 
 //ON-LOAD
 	function playLogo(){
@@ -109,22 +148,25 @@ $(document).ready(function() {
 		carStart.play();
 	}
 	function startButton() {
-		$("#startButton").append("Ready to Start?");
+		$("#startButton").append("Click to Start!");
 		$("#startButton").click(function(){
 			$("#startButton").hide();
 			$("#gameQ").html(bringQuestion);
+			themeAudio.play();
+
 		});		
     }
 
 //PLAY THE GAME
     function bringQuestion() {
     	endTime();
-    	// currentQ = questions[questionIndex].q;
+    	run();
+    	currentQ = questions[questionIndex].q;
     	// answer0 = questions[answerIndex].a[0];
 		// answer1 = questions[answerIndex].a[1];
 		// answer2 = questions[answerIndex].a[2];
 		// answer3 = questions[answerIndex].a[3];		
-		// correctAnswer = questions[questionIndex].correctA;
+		correctAnswer = questions[questionIndex].correctA;
 
     	$("#gameQ").html(currentQ);	
     		for (var i = 0; i < 4; i++) {
@@ -132,7 +174,7 @@ $(document).ready(function() {
     			answers.append(questions[answerIndex].a[i] + "<br>").hover(function() {$(this).toggleClass("hover")});
     			$("#gameQ").append(answers);
     		}
-    
+
         // if (questionIndex <= (questionsArray.length - 1)) {
         //   document.querySelector("#gameQ").innerHTML = questionsArray[0][0];
         // }
@@ -159,11 +201,16 @@ $(document).ready(function() {
     		alert("Yes");
     		$("#gameQ").html("");
     		updateScore();
+
     		if( questionIndex >= questions.length ) {
-    			$("#gameQ").html("Game over.");
+    			if( score == questions.length ){
+    				$("#gameQ").html("A job well done! Perfect! <br> <br> Want to try again?")
+    			} else {$("#gameQ").html("Game over. <br> <br> Want to try again?");
+    			}   			
     		} else {
     		bringQuestion();
     		}
+
     		console.log("current question: " + currentQ);
     		console.log("Need answer index 2: " + answerIndex);
     		
@@ -173,6 +220,7 @@ $(document).ready(function() {
     		alert("No");
     		$("#gameQ").html("");
     		updateScore();
+
     		if( questionIndex >= questions.length ) {
     			$("#gameQ").html("Game over.");
     		} else {
@@ -209,8 +257,7 @@ $(document).ready(function() {
 		 //        console.log("---------");
 		 //      }
     
-	setTimeout(playLogo, 1000*2);
-	setTimeout(startButton, 1000*5);
+
 
 });
 
