@@ -8,7 +8,7 @@ h1 {
     text-align: center;
 }
 #mainGame {
-	background: #CECFDE;
+		background: #CECFDE;
     min-height: 400px;
     width: 600px;
     position: relative;
@@ -58,4 +58,3 @@ h1 {
     width: 150px;
     text-align: center;
 }
-

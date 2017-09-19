@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	var carStart = new Audio("assets/audio/carstart.wav");
-	var themeAudio = new Audio("assets/audio/theme.mp3")
+	var themeAudio = new Audio("assets/audio/theme.mp3");
 	var nextQdiv = document.getElementById("#gameQ");
 
 	setTimeout(playLogo, 1000*2);
@@ -82,8 +82,8 @@ $(document).ready(function() {
 	var intervalID;
 
     function run() {
-    	number = 10;
-      intervalId = setInterval(decrement, 1000);
+	    	number = 10;
+	      intervalId = setInterval(decrement, 1000);
     }
     function decrement() {
 	      //  Decrease number by one.
@@ -91,28 +91,28 @@ $(document).ready(function() {
 	      //  Show the number in the #timeClock tag.
 	      $("#timeClock").html("<h2>Time left: " + number + "</h2>");
 	      if (number < 1) {
-	        stop();
-	        console.log("Time's up!");
-					questionIndex++;
-					answerIndex++;
-					updateScore();
-					bringQuestion();
+	        	stop();
+		        console.log("Time's up!");
+						questionIndex++;
+						answerIndex++;
+						updateScore();
+						bringQuestion();
 	      }
     }
     function stop() {
-	      clearInterval(intervalId);
+	      	clearInterval(intervalId);
     }
 //END COUNTDOWN WORK
 
 
 //ON-LOAD
 	function playLogo(){
-		$("#gameTitle").append("<h1>Trivia Time!</h1>").fadeIn("slow");
-		carStart.play();
+			$("#gameTitle").append("<h1>Trivia Time!</h1>").fadeIn("slow");
+			carStart.play();
 	}
 	function startButton() {
-		$("#startButton").append("Click to Start!");
-		$("#startButton").click(function(){
+			$("#startButton").append("Click to Start!");
+			$("#startButton").click(function(){
 			$("#startButton").slideUp();
 			$("#gameTitle").slideUp();
 			$("#gameQ").html(bringQuestion);
@@ -133,27 +133,18 @@ $(document).ready(function() {
     			$("#gameQ").append(answers);
     		}
     }
-
     function updateScore() {
-    	$("#scoreDiv").html("Total correct: " + score + " of " + questionIndex);
+    		$("#scoreDiv").html("Total correct: " + score + " of " + questionIndex);
     }
-    //Apparently I didn't need this function below...
-    // function endTime(){
-    // 	if( questionIndex >= questions.length - 1 ) {
-    // 		$("#gameQ").html("Game over.");
-    // 		$("#timeClock").html("");
-    // 	} else {}
-    // }
-
     $(document).on("click",".ans",function(e) {
-    	var chosenAnswer = e.target.id; //Chosen answer = HTML ID
-			if( chosenAnswer == correctAnswer ) {
-	    		score++;
-	    		questionIndex++;
-	    		answerIndex++;
-	    		$("#gameQ").html("");
-	    		updateScore();
-	    		if( questionIndex >= questions.length ) { //Reach end of questions - end game
+    		var chosenAnswer = e.target.id; //Chosen answer = HTML ID
+				if( chosenAnswer == correctAnswer ) {
+	    	score++;
+	    	questionIndex++;
+	   		answerIndex++;
+	   		$("#gameQ").html("");
+	   		updateScore();
+	   		if( questionIndex >= questions.length ) { //Reach end of questions - end game
 		    			if( score == questions.length ){ //If player played a perfect game
 			    				$("#gameQ").html("A job well done! Perfect! <br> <br> Want to try again?")
 			    				$(".btnPlayAgain").show();
@@ -161,10 +152,10 @@ $(document).ready(function() {
 			    				$("#gameQ").html("Game over. <br> <br> Want to try again?");
 			    				$(".btnPlayAgain").show();
 		    			}
-	    		} else {
-	    		clearInterval(intervalId);
-	    		bringQuestion();
-	    		}
+	    	} else {
+	    	clearInterval(intervalId);
+	   		bringQuestion();
+	   		}
     	} else {
     		questionIndex++;
     		answerIndex++;
