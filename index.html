@@ -1,50 +1,32 @@
 	<html>
+
 	<head>
-
-		<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
-
-	  	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-
+			<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+	  	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
 		<script
 	  	src="https://code.jquery.com/jquery-3.2.1.min.js"
 	  	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	  	crossorigin="anonymous"></script>
-
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
 	  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<meta charset="UTF-8">
 		<title>Trivia Time!</title>
 	</head>
 	<body>
 		<div id="mainGame">
-					<!-- Theme Music Buttons -->
-					<div class="text-center">
-				        <button class="btn btn-default btn-xs theme-button"><span class="glyphicon glyphicon-music"></span> Play!</button>
-				        <button class="btn btn-default btn-xs pause-button"><span class="glyphicon glyphicon-pause"></span> Pause</button>
-			     </div>
+				<!-- Theme Music Buttons -->
+				<div class="text-center">
+			          <button class="btn btn-default btn-xs theme-button"><span class="glyphicon glyphicon-music"></span> Play!</button>
+			          <button class="btn btn-default btn-xs pause-button"><span class="glyphicon glyphicon-pause"></span> Pause</button>
+		    </div>
+				<!-- Main Content -->
+				<div id="logoDiv">
+							<img id="logo" src="assets/images/bttfLogo.png" alt="Logo">
+				</div>
+				<h1 class="triviaText">Trivia!</h1>
 
-					<!-- Main Content -->
-					<div id="logoDiv">
-								<img id="logo" src="assets/images/bttfLogo.png" alt="Logo">
-					</div>
-
-					<h1 id="gameTitle"></h1>
-					<div id="startButton"></div>
-					<div id="all">
-						<div id="timeClock"></div>
-							<div id="gameQ" class="que">
-									<div id="0" class="ans"></div>
-									<div id="1" class="ans"></div>
-									<div id="2" class="ans"></div>
-									<div id="3" class="ans"></div>
-							</div>
-					<div id="scoreDiv"></div>
-
-					<!-- Play again? -->
-					<div class="text-center btnPlayAgain">
-				        <button class="btn btn-danger btn-xs theme-button"><span class="glyphicon"></span>RESTART</button>
-		      </div>
+				<div id="subwrapper">
+						<button id="start">Start</button>
 				</div>
 		</div>
 		<script src="assets/js/script.js"></script>
