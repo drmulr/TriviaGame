@@ -2,7 +2,8 @@
 
     var carStart = new Audio("assets/audio/carstart.wav");
   	var themeAudio = new Audio("assets/audio/theme.mp3");
-  	var nextQdiv = document.getElementById("#gameQ");
+    var nextQdiv = document.getElementById("#gameQ");
+    themeAudio.play();
     //WORK ON CAR START AND THEME PLAY
   	// setTimeout(carStart.play(), 1000*3);
   	// setTimeout(startButton, 1000*5);
